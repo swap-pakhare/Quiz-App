@@ -1,0 +1,10 @@
+<h1>Admins : </h1>
+<ul>
+	<% @admins.each do |admin| %>
+		<li>
+			<%= admin.email %> ->
+		  	<%= link_to "delete", admin, method: :delete, data: { confirm: "Are you sure?" } %>
+		</li>
+	<% end %>
+</ul>
+<%= link_to "Home", admin_dashboard_path %>

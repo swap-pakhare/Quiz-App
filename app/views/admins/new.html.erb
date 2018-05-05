@@ -1,0 +1,37 @@
+<% provide(:title, 'Add Admin') %>
+<h1>Add Admins</h1>
+
+<% if @admin.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@admin.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @admin.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:admin, url: admin_addadmin_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      <br />
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <br />
+
+      <%= f.submit "Create admin account", class: "btn btn-primary" %>
+      <br />
+    <% end %>
+  </div>
+</div>
+<br>
+<%= link_to "Home", admin_dashboard_path %>

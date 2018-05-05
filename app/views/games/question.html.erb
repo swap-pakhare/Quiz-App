@@ -1,0 +1,47 @@
+<h2>Current Score: <%= @ugame.curr %></h2>
+
+<h2>Question : </h2>
+<% if @questi.typ != 2 %>
+	<p>Q. <%= Nokogiri::HTML.parse("#{@questi.question}").text %> </p>
+	<% if @questi.typ == 3 %>
+		<audio src='/audios/<%= @questi.link %>' controls="controls" preload='auto'>
+			<source src="" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+	<% elsif @questi.typ == 4 %>
+		<img src="/<%= @questi.link %>" style="height: 350px" />
+	<% end %>
+	<% temp = rand(4) %>
+	<div>
+		<%= form_tag("/quest/#{@questi.category}/#{@questi.subcat}", method: "post") %>
+			<ul>
+				<% 4.times do |f| %>
+					<% if temp == 0 %>
+						<input type="radio" name="choice" value = "<%= @questi.option1 %>"><%= Nokogiri::HTML.parse("#{@questi.option1}").text %><br>
+					<% elsif temp == 1 %>
+						<input type="radio" name="choice" value = "<%= @questi.option2 %>"><%= Nokogiri::HTML.parse("#{@questi.option2}").text %><br>
+					<% elsif temp == 2 %>
+						<input type="radio" name="choice" value = "<%= @questi.option3 %>"><%= Nokogiri::HTML.parse("#{@questi.option3}").text %><br>
+					<% else %>
+						<input type="radio" name="choice" value = "<%= @questi.option4 %>"><%= Nokogiri::HTML.parse("#{@questi.option4}").text %><br>
+					<% end %>
+					<% temp = (temp + 1) % 4 %>
+				<% end %>
+			</ul>
+			<input type="Submit" name="Submit">
+	</div>
+<% elsif @questi.typ == 2 %>
+	<p>Q. <%= Nokogiri::HTML.parse("#{@questi.question}").text %> </p>
+	<div>
+		<%= form_tag("/quest/#{@questi.category}/#{@questi.subcat}", method: "post") %>
+			<ul>
+				<input type="checkbox" name="choice1" value = "<%= @questi.option1 %>" id="checkBtn"><%= Nokogiri::HTML.parse("#{@questi.option1}").text %><br>
+				<input type="checkbox" name="choice2" value = "<%= @questi.option2 %>" id="checkBtn"><%= Nokogiri::HTML.parse("#{@questi.option2}").text %><br>
+				<input type="checkbox" name="choice3" value = "<%= @questi.option3 %>" id="checkBtn"><%= Nokogiri::HTML.parse("#{@questi.option3}").text %><br>
+				<input type="checkbox" name="choice4" value = "<%= @questi.option4 %>" id="checkBtn"><%= Nokogiri::HTML.parse("#{@questi.option4}").text %><br>
+			</ul>
+			<input type="Submit" name="Submit">
+	</div>
+<% end %>
+
+<%= link_to "Dashboard", dashboard_path %>

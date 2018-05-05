@@ -1,0 +1,135 @@
+<h1>Quiz</h1>
+<%= form_for(:game, url: updategame_path) do |f| %>
+	<table>
+		<tr>
+			<th>Category</th>
+			<th>Sub-Category</th>
+			<th>Current Score</th>
+			<th>Highest Score</th>
+			<th colspan="2">Game State</th>
+		</tr>
+		<tr>
+			<td>Science</td>
+			<td>Computers</td>
+			<td>
+			<% if not @user.games.where(category: "Science", subcat: "Computers").first.nil? %>
+				<%= @user.games.where(category: "Science", subcat: "Computers").first.curr %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td>
+			<% if not @user.games.where(category: "Science", subcat: "Computers").first.nil? %>
+				<%= @user.games.where(category: "Science", subcat: "Computers").first.highest %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td><button name = 'new', value = "newa", type = "submit" >New Game</button></td>
+			<td><button name = 'cont', value = "conta", type = "submit", 
+			<% if @user.games.where(category: "Science", subcat: "Computers").first.nil? %>
+				<%= "disabled" %>
+			<% end %>
+			>Continue</button></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Science</td>
+			<td>Nature</td>
+			<td>
+			<% if not @user.games.where(category: "Science", subcat: "Nature").first.nil? %>
+				<%= @user.games.where(category: "Science", subcat: "Nature").first.curr %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td>
+			<% if not @user.games.where(category: "Science", subcat: "Nature").first.nil? %>
+				<%= @user.games.where(category: "Science", subcat: "Nature").first.highest %>
+			<% else %>
+				<%= "-" %>
+				</td>
+			<% end %>
+			<td><button name = 'new', value = "newb", type = "submit" >New Game</button></td>
+			<td><button name = 'cont', value = "contb", type = "submit", 
+			<% if @user.games.where(category: "Science", subcat: "Nature").first.nil? %>
+				<%= "disabled" %>
+			<% end %>
+			>Continue</button></td>
+		</tr>
+		<tr>
+			<td>Entertainment</td>
+			<td>Television</td>
+			<td>
+			<% if not @user.games.where(category: "Entertainment", subcat: "Television").first.nil? %>
+				<%= @user.games.where(category: "Entertainment", subcat: "Television").first.curr %>
+			<% else %>
+				<% "-" %>
+			<% end %>
+			</td>
+			<td>
+			<% if not @user.games.where(category: "Entertainment", subcat: "Television").first.nil? %>
+				<%= @user.games.where(category: "Entertainment", subcat: "Television").first.highest %>
+			<% else %>
+				<% "-" %>
+			<% end %>
+			</td>
+			<td><button name = 'new', value = "newc", type = "submit" >New Game</button></td>
+			<td><button name = 'cont', value = "contc", type = "submit", 
+			<% if @user.games.where(category: "Entertainment", subcat: "Television").first.nil? %>
+				<%= "disabled" %>
+			<% end %>
+			>Continue</button></td>
+		</tr>
+		<tr>
+			<td>Entertainment</td>
+			<td>Books</td>
+			<td>
+			<% if not @user.games.where(category: "Entertainment", subcat: "Books").first.nil? %>
+				<%= @user.games.where(category: "Entertainment", subcat: "Books").first.curr %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td>
+			<% if not @user.games.where(category: "Entertainment", subcat: "Books").first.nil? %>
+				<%= @user.games.where(category: "Entertainment", subcat: "Books").first.highest %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td><button name = 'new', value = "newd", type = "submit" >New Game</button></td>
+			<td><button name = 'cont', value = "contd", type = "submit", 
+			<% if @user.games.where(category: "Entertainment", subcat: "Books").first.nil? %>
+				<%= "disabled" %>
+			<% end %>
+			>Continue</button></td>
+		</tr>
+		<tr>
+			<td>Entertainment</td>
+			<td>Music</td>
+			<td>
+			<% if not @user.games.where(category: "Entertainment", subcat: "Music").first.nil? %>
+				<%= @user.games.where(category: "Entertainment", subcat: "Music").first.curr %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td>
+			<% if not @user.games.where(category: "Entertainment", subcat: "Music").first.nil? %>
+				<%= @user.games.where(category: "Entertainment", subcat: "Music").first.highest %>
+			<% else %>
+				<%= "-" %>
+			<% end %>
+			</td>
+			<td><button name = 'new', value = "newe", type = "submit" >New Game</button></td>
+			<td><button name = 'cont', value = "conte", type = "submit", 
+			<% if @user.games.where(category: "Entertainment", subcat: "Music").first.nil? %>
+				<%= "disabled" %>
+			<% end %>
+			>Continue</button></td>
+		</tr>
+	</table>
+<% end %>
+
+<%= link_to "Home", dashboard_path %>
